@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 
-namespace school_backend.Models {
-    public class SchoolClass {
+namespace school_backend.Models
+{
+    public class SchoolClass
+    {
         public int Id { get; set; }
         public string Name { get; set; }
         public int Year { get; set; }

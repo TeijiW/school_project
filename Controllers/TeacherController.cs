@@ -56,8 +56,7 @@ namespace school_backend.Controllers
         [HttpDelete("{Id}")]
         public ActionResult<Teacher> Delete(int Id)
         {
-            var teacher = _context.TeacherRepo.GetById
-            (t => t.Id == Id);
+            var teacher = _context.TeacherRepo.GetById(t => t.Id == Id);
             if (teacher == null) { return NotFound(); }
             _context.TeacherRepo.Delete(teacher);
             _context.Commit();
