@@ -12,47 +12,33 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using school_backend.Context;
+using school_backend.Repository;
 
-namespace school_backend
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace school_backend {
+    public class Startup {
+        public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
+        public void ConfigureServices (IServiceCollection services) {
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<DatabaseContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<UnitOfWork, UnitOfWork> ();
+            services.AddDbContext<DatabaseContext> (options => options.UseMySql (Configuration.GetConnectionString ("DefaultConnection")));
 
-            services.AddCors();
-            services.AddControllers().AddNewtonsoftJson(options =>
-            {
+            services.AddCors ();
+            services.AddControllers ().AddNewtonsoftJson (options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+        public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
+            if (env.IsDevelopment ()) {
+                app.UseDeveloperExceptionPage ();
             }
-
             // app.UseHttpsRedirection();
-
-            app.UseRouting();
-
+            app.UseRouting ();
             // app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+            app.UseEndpoints (endpoints => {
+                endpoints.MapControllers ();
             });
         }
     }
