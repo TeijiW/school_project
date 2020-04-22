@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using school_backend.Context;
-using school_backend.Models;
-using school_backend.Repository;
+using school_project.Domain.Aggregations;
+using school_project.Infra.Repository;
 
-namespace school_backend.Controllers
+namespace school_project.Controllers
 {
 
     [Route("api/school-class")]

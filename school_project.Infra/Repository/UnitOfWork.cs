@@ -1,6 +1,6 @@
-using school_backend.Context;
+using school_project.Infra.Context;
 
-namespace school_backend.Repository
+namespace school_project.Infra.Repository
 {
     public class UnitOfWork
     {
@@ -8,41 +8,41 @@ namespace school_backend.Repository
         private SchoolClassRepository _schoolClassRepo;
         private TeacherRepository _teacherRepo;
         private ClassTeacherRepository _classTeacherRepo;
-        public DatabaseContext _context;
+        public DatabaseContext Context;
 
         public UnitOfWork(DatabaseContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public StudentRepository StudentRepo
         {
-            get { return _studentRepo = _studentRepo ?? new StudentRepository(_context); }
+            get { return _studentRepo = _studentRepo ?? new StudentRepository(Context); }
         }
 
         public SchoolClassRepository SchoolClassRepo
         {
-            get { return _schoolClassRepo = _schoolClassRepo ?? new SchoolClassRepository(_context); }
+            get { return _schoolClassRepo = _schoolClassRepo ?? new SchoolClassRepository(Context); }
         }
 
         public TeacherRepository TeacherRepo
         {
-            get { return _teacherRepo = _teacherRepo ?? new TeacherRepository(_context); }
+            get { return _teacherRepo = _teacherRepo ?? new TeacherRepository(Context); }
         }
 
         public ClassTeacherRepository ClassTeacherRepo
         {
-            get { return _classTeacherRepo = _classTeacherRepo ?? new ClassTeacherRepository(_context); }
+            get { return _classTeacherRepo = _classTeacherRepo ?? new ClassTeacherRepository(Context); }
         }
 
         public void Commit()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            Context.Dispose();
         }
 
     }

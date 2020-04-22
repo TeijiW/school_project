@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using school_backend.Context;
-using school_backend.Repository;
+using school_project.Infra.Context;
+using school_project.Infra.Repository;
 
-namespace school_backend 
+namespace school_project 
 {
     public class Startup 
     {
@@ -26,12 +19,9 @@ namespace school_backend
         public void ConfigureServices (IServiceCollection services) {
 
             services.AddScoped<UnitOfWork, UnitOfWork> ();
-            services.AddDbContext<DatabaseContext> (options => options.UseMySql (Configuration.GetConnectionString ("DefaultConnection")));
-
+            services.AddDbContext<DatabaseContext>();
             services.AddCors ();
-            services.AddControllers ().AddNewtonsoftJson (options => {
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            });
+            services.AddControllers();
         }
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment ()) {

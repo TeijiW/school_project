@@ -1,6 +1,6 @@
 using System;
 
-namespace school_backend.Models
+namespace school_project.Domain.Aggregations
 {
     public class Student
     {

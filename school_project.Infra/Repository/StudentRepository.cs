@@ -1,7 +1,7 @@
-using school_backend.Context;
-using school_backend.Models;
+using school_project.Domain.Aggregations;
+using school_project.Infra.Context;
 
-namespace school_backend.Repository
+namespace school_project.Infra.Repository
 {
     public class StudentRepository : Repository<Student>
     {

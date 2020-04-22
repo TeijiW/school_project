@@ -2,44 +2,43 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using school_backend.Context;
+using school_project.Infra.Context;
 
-namespace school_backend.Repository
+namespace school_project.Infra.Repository
 {
     public class Repository<T> where T : class
     {
-
-        protected DatabaseContext _context;
+        protected readonly DatabaseContext Context;
 
         public Repository(DatabaseContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public IQueryable<T> Get()
         {
-            return _context.Set<T>().AsNoTracking();
+            return Context.Set<T>().AsNoTracking();
         }
 
         public T GetById(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().AsNoTracking().SingleOrDefault(predicate);
+            return Context.Set<T>().AsNoTracking().SingleOrDefault(predicate);
         }
 
         public void Add(T entity)
         {
-            _context.Set<T>().Add(entity);
+            Context.Set<T>().Add(entity);
         }
 
         public void Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            Context.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.Set<T>().Update(entity);
+            Context.Entry(entity).State = EntityState.Modified;
+            Context.Set<T>().Update(entity);
         }
 
     }

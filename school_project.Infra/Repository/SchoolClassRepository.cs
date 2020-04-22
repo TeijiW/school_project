@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using school_backend.Context;
-using school_backend.Models;
+using school_project.Domain.Aggregations;
+using school_project.Infra.Context;
 
-namespace school_backend.Repository
+namespace school_project.Infra.Repository
 {
     public class SchoolClassRepository : Repository<SchoolClass>
     {
@@ -12,7 +12,7 @@ namespace school_backend.Repository
 
         public bool CheckSchoolClass(int schoolClassId)
         {
-            return _context.SchoolClasses.Any(sc => sc.Id == schoolClassId);
+            return Context.SchoolClasses.Any(sc => sc.Id == schoolClassId);
         }
 
         public IEnumerable<SchoolClass> GetWithStudents()

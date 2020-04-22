@@ -1,8 +1,8 @@
 using System.Linq;
-using school_backend.Context;
-using school_backend.Models;
+using school_project.Domain.Aggregations;
+using school_project.Infra.Context;
 
-namespace school_backend.Repository
+namespace school_project.Infra.Repository
 {
     public class TeacherRepository : Repository<Teacher>
     {
@@ -10,7 +10,7 @@ namespace school_backend.Repository
 
         public bool CheckTeacher(int teacherId)
         {
-            return _context.Teachers.Any(t => t.Id == teacherId);
+            return Context.Teachers.Any(t => t.Id == teacherId);
         }
     }
 }

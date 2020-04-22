@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace school_backend.Models
+namespace school_project.Domain.Aggregations
 {
     public class Teacher
     {

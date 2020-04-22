@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using school_backend.Models;
+using school_project.Domain.Aggregations;
 
-namespace school_backend.Context.Maps
+namespace school_project.Infra.Context.Maps
 {
     public class TeacherMap : IEntityTypeConfiguration<Teacher>
     {

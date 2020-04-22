@@ -1,9 +1,7 @@
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using school_backend.Context.Maps;
-using school_backend.Models;
+using school_project.Domain.Aggregations;
 
-namespace school_backend.Context
+namespace school_project.Infra.Context
 {
     public class DatabaseContext : DbContext
     {
@@ -15,11 +13,13 @@ namespace school_backend.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new SchoolClassMap());
-            builder.ApplyConfiguration(new TeacherMap());
-            builder.ApplyConfiguration(new StudentMap());
-            builder.ApplyConfiguration(new ClassTeacherMap());
-            base.OnModelCreating(builder);
+            //// TODO: [frvs] fix this (why doesnt works?)
+            
+            //builder.ApplyConfiguration(new SchoolClassMap());
+            //builder.ApplyConfiguration(new TeacherMap());
+            //builder.ApplyConfiguration(new StudentMap());
+            //builder.ApplyConfiguration(new ClassTeacherMap());
+            //base.OnModelCreating(builder);
         }
 
     }

@@ -1,8 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace school_backend.Migrations
+namespace school_project.Infra.Migrations
 {
     public partial class initial : Migration
     {
@@ -13,7 +12,7 @@ namespace school_backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", new object()),
                     Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     Year = table.Column<int>(type: "int(5)", nullable: false)
                 },
@@ -27,7 +26,7 @@ namespace school_backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", new object()),
                     Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     Subject = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false)
@@ -42,7 +41,7 @@ namespace school_backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", new object()),
                     Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
                     SchoolClassId = table.Column<int>(nullable: false)
