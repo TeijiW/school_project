@@ -2,7 +2,7 @@
 
 ## The backend of a school classes manager, made with .NET
 
-### **WARNING** I'm still working on this project, so it's still in progress
+### I'm still working on this project, so it's still in progress
 
 ## Steps to run
 
