@@ -13,7 +13,6 @@ namespace school_backend.Context.Maps
             builder.Property(x => x.Name).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
             builder.Property(x => x.Subject).IsRequired().HasMaxLength(80).HasColumnType("varchar(80)");
             builder.Property(x => x.Birthday);
-            builder.HasOne(x => x.SchoolClass).WithMany(y => y.Teachers);
         }
 
     }

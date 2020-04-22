@@ -23,7 +23,6 @@ namespace school_backend.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<SchoolClass>> Get()
         {
-            // return await _context.SchoolClasses.AsNoTracking().ToListAsync();
             return _context.SchoolClassRepo.Get().ToList();
         }
 

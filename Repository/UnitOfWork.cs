@@ -7,6 +7,7 @@ namespace school_backend.Repository
         private StudentRepository _studentRepo;
         private SchoolClassRepository _schoolClassRepo;
         private TeacherRepository _teacherRepo;
+        private ClassTeacherRepository _classTeacherRepo;
         public DatabaseContext _context;
 
         public UnitOfWork(DatabaseContext context)
@@ -27,6 +28,11 @@ namespace school_backend.Repository
         public TeacherRepository TeacherRepo
         {
             get { return _teacherRepo = _teacherRepo ?? new TeacherRepository(_context); }
+        }
+
+        public ClassTeacherRepository ClassTeacherRepo
+        {
+            get { return _classTeacherRepo = _classTeacherRepo ?? new ClassTeacherRepository(_context); }
         }
 
         public void Commit()

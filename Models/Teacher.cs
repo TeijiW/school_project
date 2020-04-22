@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace school_backend.Models
 {
@@ -8,7 +9,6 @@ namespace school_backend.Models
         public string Name { get; set; }
         public string Subject { get; set; }
         public DateTime Birthday { get; set; }
-        public SchoolClass SchoolClass { get; set; }
-        public int SchoolClassId { get; set; }
+        public ICollection<ClassTeacher> ClassTeachers { get; set; }
     }
 }

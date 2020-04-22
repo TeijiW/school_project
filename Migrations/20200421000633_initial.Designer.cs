@@ -9,7 +9,7 @@ using school_backend.Context;
 namespace school_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200411213216_initial")]
+    [Migration("20200421000633_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,6 +18,21 @@ namespace school_backend.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("school_backend.Models.ClassTeacher", b =>
+                {
+                    b.Property<int>("SchoolClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SchoolClassId", "TeacherId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("ClassTeacher");
+                });
 
             modelBuilder.Entity("school_backend.Models.SchoolClass", b =>
                 {
@@ -76,9 +91,6 @@ namespace school_backend.Migrations
                         .HasColumnType("varchar(120)")
                         .HasMaxLength(120);
 
-                    b.Property<int>("SchoolClassId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("varchar(80)")
@@ -86,24 +98,28 @@ namespace school_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SchoolClassId");
-
                     b.ToTable("Teacher");
+                });
+
+            modelBuilder.Entity("school_backend.Models.ClassTeacher", b =>
+                {
+                    b.HasOne("school_backend.Models.SchoolClass", "SchoolClass")
+                        .WithMany("ClassTeachers")
+                        .HasForeignKey("SchoolClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("school_backend.Models.Teacher", "Teacher")
+                        .WithMany("ClassTeachers")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("school_backend.Models.Student", b =>
                 {
                     b.HasOne("school_backend.Models.SchoolClass", "SchoolClass")
                         .WithMany("Students")
-                        .HasForeignKey("SchoolClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("school_backend.Models.Teacher", b =>
-                {
-                    b.HasOne("school_backend.Models.SchoolClass", "SchoolClass")
-                        .WithMany("Teachers")
                         .HasForeignKey("SchoolClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

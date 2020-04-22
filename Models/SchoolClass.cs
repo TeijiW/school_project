@@ -8,6 +8,6 @@ namespace school_backend.Models
         public string Name { get; set; }
         public int Year { get; set; }
         public ICollection<Student> Students { get; set; }
-        public ICollection<Teacher> Teachers { get; set; }
+        public ICollection<ClassTeacher> ClassTeachers { get; set; }
     }
 }

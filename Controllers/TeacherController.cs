@@ -36,9 +36,6 @@ namespace school_backend.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Teacher teacher)
         {
-
-            var schoolClass = _context.SchoolClassRepo.CheckSchoolClass(teacher.SchoolClassId);
-            if (!schoolClass) { return BadRequest("Invalid Class"); }
             _context.TeacherRepo.Add(teacher);
             _context.Commit();
             return new CreatedAtRouteResult("GetTeacher", new { id = teacher.Id }, teacher);
