@@ -14,10 +14,13 @@ using Microsoft.Extensions.Logging;
 using school_backend.Context;
 using school_backend.Repository;
 
-namespace school_backend {
-    public class Startup {
-        public Startup (IConfiguration configuration) {
-            Configuration = configuration;
+namespace school_backend 
+{
+    public class Startup 
+    {
+        public Startup (IConfiguration _config) 
+        {
+            Configuration = _config;
         }
         public IConfiguration Configuration { get; }
         public void ConfigureServices (IServiceCollection services) {
