@@ -1,8 +1,8 @@
 # School Backend Project
 
-## The backend of a school classes manager, made with .NET
+The backend of a school classes manager, made with .NET Core and EF Core
 
-### I'm still working on this project, so it's still in progress
+**Warning:** Work in progress
 
 ## Steps to run
 
