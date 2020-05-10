@@ -40,9 +40,7 @@ The backend of a school classes manager, made with .NET Core and EF Core
 - `/api/school-class/{classId}/teachers/{teacherId}`
   - POST - Add the associated teacher to the class (Don't need body)
 
-## Default JSON model to requests
-
-### **WARNING** I'm working at "Teacher" and "SchoolClass" relationship, so the model will probably change soon
+## Default JSON model
 
 ### Student
 
