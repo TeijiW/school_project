@@ -15,6 +15,22 @@ namespace school_backend.Repository
             return _context.SchoolClasses.Any(sc => sc.Id == schoolClassId);
         }
 
+        public void AddTeacherToClass(SchoolClass schoolClass, Teacher teacher)
+        {
+            var classTeacher = new ClassTeacher();
+            classTeacher.SchoolClassId = schoolClass.Id;
+            classTeacher.TeacherId = teacher.Id;
+            _context.ClassTeachers.Add(classTeacher);
+        }
+
+        public IEnumerable<SchoolClass> GetTeachersByClass(int classId)
+        {
+            return Get()
+            .Where(sc => sc.Id == classId)
+            .Include(sc => sc.ClassTeachers)
+            .ThenInclude(ct => ct.Teacher);
+        }
+
         public IEnumerable<SchoolClass> GetWithStudents()
         {
             return Get().Include(sc => sc.Students);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace school_backend.Controllers
         [HttpGet("{Id}", Name = "GetSchoolClass")]
         public ActionResult<SchoolClass> GetById(int Id)
         {
-            var schoolClass = _context.SchoolClassRepo.GetById(s => s.Id == Id);
+            var schoolClass = _context.SchoolClassRepo.GetById(sc => sc.Id == Id);
             if (schoolClass == null) { return NotFound(); }
             return schoolClass;
         }
@@ -40,12 +41,41 @@ namespace school_backend.Controllers
             return _context.SchoolClassRepo.GetWithStudents().ToList();
         }
 
+        [HttpGet("{classId}/teachers")]
+        public ActionResult<IEnumerable<SchoolClass>> GetTeachersByClass(int classId)
+        {
+            return _context.SchoolClassRepo.GetTeachersByClass(classId).ToList();
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] SchoolClass schoolClass)
         {
             _context.SchoolClassRepo.Add(schoolClass);
             _context.Commit();
             return new CreatedAtRouteResult("GetSchoolClass", schoolClass);
+        }
+
+        [HttpPost("{classId}/teachers/{teacherId}")]
+        public ActionResult AddTeacherToClass(int classId, int teacherId)
+        {
+            try
+            {
+                var schoolClass = _context.SchoolClassRepo.GetById(sc => sc.Id == classId);
+                var teacher = _context.TeacherRepo.GetById(t => t.Id == teacherId);
+                if (schoolClass == null || teacher == null) { return BadRequest(); }
+                _context.SchoolClassRepo.AddTeacherToClass(schoolClass, teacher);
+                _context.Commit();
+                return CreatedAtAction("AddTeacherToClass", new { teacherId, classId });
+            }
+            catch (Exception exception)
+            {
+                if (exception is DbUpdateException)
+                {
+                    return BadRequest();
+                }
+                return StatusCode(500);
+            }
+
         }
 
         [HttpPut("{Id}")]
