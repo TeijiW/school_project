@@ -19,7 +19,7 @@ The backend of a school classes manager, made with .NET Core and EF Core
 -   teacher
 -   school-class
 
-### Generic Routes
+### Routes
 
 -   `/api/resource`
     -   GET - Get a resource collection
