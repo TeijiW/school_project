@@ -31,8 +31,14 @@ The backend of a school classes manager, made with .NET Core and EF Core
 
 ### Unique Routes
 
--   `/api/school-class/students`
+- `/api/school-class/students`
     -   GET - Return the classes with the students
+
+- `/api/school-class/{classId}/teachers`
+  - GET - Return all teachers associated with the class
+
+- `/api/school-class/{classId}/teachers/{teacherId}`
+  - POST - Add the associated teacher to the class (Don't need body)
 
 ## Default JSON model to requests
 
